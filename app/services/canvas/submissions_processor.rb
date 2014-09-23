@@ -27,6 +27,13 @@ class Canvas::SubmissionsProcessor
       assignment_id = submission['assignment_id']
       attachment_data = []
       if  submission['attachments']
+# <<<<<<< HEAD
+        submission['attachments'].each do |attachment|
+          attachment_data << {'author' =>  smap[user_id], 'id' => attachment['id'],
+                              'source' => attachment['url'], 'type' => 'image',
+                              'comments' => [], 'numComments' => 0,
+                              'date' => Time.parse(attachment['updated_at']).to_s(:gallery)}
+# =======
         previously_credited = Activity.where({canvas_scoring_item_id: submission['assignment_id'],
             reason: 'Submission', canvas_user_id: submission['user_id']}).first
 
@@ -38,8 +45,10 @@ class Canvas::SubmissionsProcessor
              assignment_id: submission['assignment_id'], submission_id: submission['id'], author: smap[submission['user_id']]}
           attachment_processor.call(submission['attachments'])
           previously_credited.update_attribute(:canvas_updated_at, submission['submitted_at']) if previously_credited
+# >>>>>>> 8c83dbbc6964f9c308494958ad8a805a2e61d1b4
         end
       end
+    end
 
       if user_id   && !(scored_submissions.include?([assignment_id, user_id]))
         Activity.score!({canvas_scoring_item_id: assignment_id,

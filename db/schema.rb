@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140819041455) do
+ActiveRecord::Schema.define(version: 20140821230550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20140819041455) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "num_comments"
   end
 
   create_table "comments", force: true do |t|
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(version: 20140819041455) do
     t.text     "content"
     t.integer  "submission_id",     null: false
     t.integer  "authors_canvas_id", null: false
+    t.string   "author"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

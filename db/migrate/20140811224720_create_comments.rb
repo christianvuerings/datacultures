@@ -6,6 +6,7 @@ class CreateComments < ActiveRecord::Migration
       t.text        :content
       t.integer     :submission_id,      null: false
       t.integer     :authors_canvas_id,  null: false
+      t.string      :author
       t.timestamps
     end
   end

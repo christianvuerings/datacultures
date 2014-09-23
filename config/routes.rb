@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       get '/gallery/index' => 'gallery#index', defaults: { format: 'json'}
       resources :points_configuration, only: [:index, :update]
       post '/comments/new(/:comment_id)' => 'comments#create'
+      get '/comments/:submission_id' => 'comments#show'
       resources :likes, only: [:index, :create]
       put '/likes' => 'likes#update'
       patch '/likes' => 'likes#update'
