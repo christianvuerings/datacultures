@@ -27,8 +27,8 @@ class Api::V1::EngagementIndexController < ApplicationController
       end
       engagement_index_json = {}
       engagement_index_json["students"] = students_array.sort_by {|h| h[:id]}
-      engagement_index_json["current_canvas_user"] = students.where({canvas_user_id: session[:canvas_user_id].to_i}).first
-      engagement_index_json["current_canvas_user_points"] = student_points[session[:canvas_user_id].to_i] || 0
+      engagement_index_json["current_canvas_user"] = students.where({canvas_user_id: session[:canvas]['user_id'].to_i}).first
+      engagement_index_json["current_canvas_user_points"] = student_points[session[:canvas]['user_id'].to_i] || 0
       return engagement_index_json
     end
 end
