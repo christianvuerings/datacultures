@@ -3,20 +3,13 @@
 
   angular.module('datacultures.controllers').controller('GalleryController', function(galleryFactory, userInfoFactory, $scope, $routeParams) {
 
-    $scope.imageID = $routeParams.imageID;
+    $scope.itemId = $routeParams.itemId;
 
     userInfoFactory.me().success(function(data) {
       $scope.currentUser = data;
     }).then(function() {
       return galleryFactory.getSubmissions().success(function(results) {
         $scope.items = results.files;
-      });
-    }).then(function() {
-      if (!$scope.imageID) {
-        return;
-      }
-      return galleryFactory.getComments($scope.imageID).success(function(results) {
-        $scope.item.comments = results;
       });
     });
 
@@ -50,16 +43,6 @@
 
     $scope.filterGallery = {
       types: $scope.filterOptions.types[0]
-    };
-
-    $scope.submission = function() {
-      for (var i = 0; i < $scope.items.length; i++) {
-        var itemId = $scope.items[i].id + '';
-        var imageId = $scope.imageID + '';
-        if (itemId === imageId) {
-          return $scope.items[i];
-        }
-      }
     };
 
     $scope.customFilter = function(items) {
@@ -240,43 +223,12 @@
       document.getElementById(element).reset();
     };
 
-    // VIDEO PROCESSING
-
-    $scope.isVideo = function(imageID) {
-      return ($scope.items[imageID].type === 'video');
-    };
-
-    $scope.VID = 0;
-    $scope.fetchVID = function(imageID) {
-      $scope.VID = $scope.items[imageID].VID;
-    };
-
     // HAS DESCRIPTION
-
-    $scope.hasDescription = function(imageID) {
-      if ($scope.items[imageID].description === 'None') {
+    $scope.hasDescription = function(itemId) {
+      if ($scope.items[itemId].description === 'None') {
         return false;
       } else {
         return true;
-      }
-    };
-
-    // FULL VIEW NAVIGATION
-
-    $scope.prevItem = '#';
-    $scope.nextItem = '#';
-    $scope.fetchPreviousNext = function(imageID) {
-      if (imageID === 0) {
-        $scope.testPrev = '#';
-        $scope.nextType = $scope.items[1].type;
-        $scope.nextItem = '../' + $scope.nextType + 1;
-      } else if ($scope.items[imageID] !== null) {
-        $scope.prevID = parseFloat(imageID) - parseFloat(1);
-        $scope.prevType = $scope.items[$scope.prevID].type;
-        $scope.prevItem = '../' + $scope.prevType + $scope.prevID;
-        $scope.nextID = parseFloat(imageID) + parseFloat(1);
-        $scope.nextType = $scope.items[$scope.nextID].type;
-        $scope.nextItem = '../' + $scope.nextType + $scope.nextID;
       }
     };
   });

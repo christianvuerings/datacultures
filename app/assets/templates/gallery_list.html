@@ -1,0 +1,53 @@
+<label for="dc-gallery-search-module">
+  Select Module:
+</label>
+<select id="dc-gallery-search-module" ng-model="filterModules.types" ng-options="item.display for item in moduleOptions.types" ng-change="sortType(type)"></select>
+
+<label for="dc-gallery-search-filter">
+  Filter by:
+</label>
+<select id="dc-gallery-search-filter" ng-model="filterGallery.types" ng-options="item.display for item in filterOptions.types" ng-change="sortType(type)"></select>
+
+<label for="dc-gallery-search-sort">
+  Sort by:
+</label>
+<select id="dc-gallery-search-sort" ng-model="sortMethod" ng-options="sortOptions as sortOptions.display for sortOptions in sortOptions" ng-change="switch(sortMethod)">
+  <option value="">Choose One</option>
+</select>
+
+<label for="dc-gallery-search-text">
+  Search For Student:
+</label>
+<input id="dc-gallery-search-text" type="text" ng-model="search.author">
+
+<div class="dc-gallery-list" ng-repeat="files in items | orderBy:sortGallery | filter:customFilter | filter:search">
+  <div class="dc-thumbnail-item-container">
+    <a class="dc-thumbnail-item" ng-href="/gallery/{{files.id}}" style="background-image: url({{files.image_url}})">
+      <div class="dc-thumbnail-hover">
+        <p>
+          {{files.title}} <br>
+          Posted by {{files.author}}
+        </p>
+      </div>
+    </a>
+    <p class="dc-thumbnail-caption">
+      <span ng-show="files.hasLike">
+        <button ng-disabled="files.likeDisabled" ng-click="like(files.id)" class="dc-blue-thumb"><i class="fa fa-thumbs-up fa-lg"></i></button><b>12{{files.numLikes}}</b>
+      </span>
+
+      <span ng-hide="files.hasLike">
+        <button ng-disabled="files.likeDisabled" ng-click="like(files.id)"><i class="fa fa-thumbs-up fa-lg"></i></button>{{files.numLikes}}
+      </span> &nbsp;
+
+      <span ng-show="files.hasDislike">
+        <button ng-disabled="files.dislikeDisabled" ng-click="dislike(files.id)" class="dc-blue-thumb"><i class="fa fa-thumbs-down fa-lg"></i></button><b>33{{files.numDislikes}}</b>
+      </span>
+
+      <span ng-hide="files.hasDislike">
+        <button ng-disabled="files.dislikeDisabled" ng-click="dislike(files.id)"><i class="fa fa-thumbs-down fa-lg"></i></button>{{files.numDislikes}}
+      </span>
+      <br> {{files.numComments}} comments &#8226; {{files.numViews}} views
+      <br> Posted on {{files.date}}
+    </p>
+  </div>
+</div>

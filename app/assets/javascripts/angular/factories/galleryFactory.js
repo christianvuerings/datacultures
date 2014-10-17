@@ -13,8 +13,8 @@
       return $http.get(url);
     };
 
-    var getComments = function(imageID) {
-      var url = '/api/v1/comments/' + imageID;
+    var getComments = function(itemId) {
+      var url = '/api/v1/comments/' + itemId;
       return $http.get(url);
     };
 

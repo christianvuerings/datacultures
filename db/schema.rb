@@ -44,16 +44,14 @@ ActiveRecord::Schema.define(version: 20141015203016) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "num_comments"
   end
 
   create_table "comments", force: true do |t|
-    t.integer  "parent_id"
+    t.integer  "parent_id",         null: false
     t.integer  "comment_id",        null: false
     t.text     "content"
     t.integer  "submission_id",     null: false
     t.integer  "authors_canvas_id", null: false
-    t.string   "author"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -99,9 +99,20 @@
     }
   }
 
-  .dc-thumbnail-video {
-    opacity: .7;
+  .dc-videowrapper {
+    height: 0;
+    padding-bottom: 56.25%;
+    padding-top: 25px;
+    position: relative;
+    iframe {
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
   }
+
   // FULL VIEW LAYOUT
   .dc-full-align-right {
     float: right;
@@ -120,11 +131,8 @@
     width: 530px;
   }
   .dc-full-container {
-    font-size: .9em;
     margin-bottom: 30px;
-    margin-left: 20px;
-    margin-top: 70px;
-    width: 750px;
+    margin-top: 20px;
   }
   .dc-full-details-position {
     padding-left: 15px;
@@ -132,21 +140,12 @@
     width: 205px;
   }
   .dc-full-header {
-    background: #fcfcfc;
     border-bottom: 1px solid #efefef;
-    font-size: .85em;
-    left: 0;
     padding: 10px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    h2 {
-      color: #0d628e;
-    }
   }
   .dc-full-image {
     max-width: 750px;
+    width: 100%;
   }
   .dc-full-image-details {
     font-size: .9em;
@@ -156,17 +155,6 @@
   .dc-full-image-description {
     clear: both;
     margin-bottom: 20px;
-  }
-  .dc-full-image-inline {
-    background: #f9f9f9;
-    clear: both;
-    display: table-cell;
-    float: left;
-    margin-bottom: 20px;
-    text-align: center;
-    top: 0;
-    vertical-align: middle;
-    width: 750px;
   }
   .dc-full-likes-inline {
     background: #ddd;

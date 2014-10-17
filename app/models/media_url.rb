@@ -23,9 +23,28 @@ class MediaUrl < ActiveRecord::Base
 
   end
 
+  def self.thumbnail(service_tag, id)
+    if service_tag == 'youtube_id'
+      'https://img.youtube.com/vi/' + id + '/hqdefault.jpg'
+    else
+      f = Faraday.new(url: "http://vimeo.com/api/v2/video/#{id}.json")
+      f.response :json, :content_type => 'application/json'
+      f.get().body[0]['thumbnail_medium']
+    end
+  end
+
   def self.hash_for_api
-    all.map{|media_url| {media_url.site_tag.to_sym => media_url.site_id, canvas_user_id: media_url.canvas_user_id,
-             assignment_id: media_url.canvas_assignment_id, author: media_url.author } }
+    all.map{|media_url|
+      {
+        media_url.site_tag.to_sym => media_url.site_id,
+        canvas_user_id: media_url.canvas_user_id,
+        assignment_id: media_url.canvas_assignment_id,
+        author: media_url.author,
+        id: "#{media_url.canvas_assignment_id}-#{media_url.id}",
+        type: 'video',
+        image_url: thumbnail(media_url.site_tag, media_url.site_id)
+      }
+    }
   end
 
 end
