@@ -19,6 +19,7 @@ module ArrayRefinement
       map(&:serializable_hash).each{ |image, image_id|
         image['id'] = "#{image['assignment_id']}-#{image['id']}"
         image['type'] = 'image'
+        image['date'] = Date.strptime(image['date'], '%m/%d/%Y').strftime('%Q').to_i
       }
     end
 
@@ -31,7 +32,8 @@ module ArrayRefinement
             author: media_url.author,
             id: "#{media_url.canvas_assignment_id}-#{media_url.id}",
             type: 'video',
-            image_url: Video::Metadata.thumbnail_url(media_url.site_tag, media_url.site_id)
+            image_url: Video::Metadata.thumbnail_url(media_url.site_tag, media_url.site_id),
+            date: media_url.created_at.to_i * 1000
         }
       }
 
