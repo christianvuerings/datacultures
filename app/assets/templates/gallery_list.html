@@ -47,7 +47,7 @@
         <button ng-disabled="files.dislikeDisabled" ng-click="dislike(files.id)"><i class="fa fa-thumbs-down fa-lg"></i></button>{{files.numDislikes}}
       </span>
       <br> {{files.numComments}} comments &#8226; {{files.numViews}} views
-      <br> Posted on {{files.date}}
+      <br> <span ng-if="files.date">Posted on {{files.date | date:'MM/dd/yyyy'}}</span>
     </p>
   </div>
 </div>
