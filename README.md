@@ -2,7 +2,7 @@
 
 The Data Cultures LTI provider application running in Canvas
 
-[![Dependency Status](https://img.shields.io/gemnasium/ets-berkeley-edu/datacultures.svg)](https://gemnasium.com/ets-berkeley-edu/datacultures) [![Code Climate](https://img.shields.io/codeclimate/github/ets-berkeley-edu/datacultures.svg)](https://codeclimate.com/github/ets-berkeley-edu/datacultures)
+[![Dependency Status](https://gemnasium.com/ets-berkeley-edu/datacultures.svg)](https://gemnasium.com/ets-berkeley-edu/datacultures) [![Code Climate](https://codeclimate.com/github/ets-berkeley-edu/datacultures/badges/gpa.svg)](https://codeclimate.com/github/ets-berkeley-edu/datacultures)
 * Master Build: [![Build Status](https://api.travis-ci.org/ets-berkeley-edu/datacultures.svg?branch=master)](https://travis-ci.org/ets-berkeley-edu/datacultures)
 
 ## JavaScript
